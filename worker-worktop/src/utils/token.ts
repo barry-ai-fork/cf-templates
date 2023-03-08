@@ -6,8 +6,11 @@ import * as Models from '../utils/models';
 import type { Context, Handler } from '../context';
 
 export function setup(context: Context) {
-	return (context.$token ||= HS256({
-		key: context.bindings.JWT_SECRET,
+		// const key = context.bindings.JWT_SECRET;
+		const key = context.bindings.JWT_SECRET || "JWT_SECRET";
+		console.log("JWT_SECRET:",key)
+		return (context.$token ||= HS256({
+		key,
 	}));
 }
 
@@ -17,6 +20,7 @@ export function setup(context: Context) {
  */
 export const load: Handler = async function (req, context) {
 	let auth = req.headers.get('Authorization');
+	console.log(auth)
 	if (!auth) return reply(401, 'Missing "Authorization" header');
 
 	let [scheme, jwt] = auth.split(/\s+/g);
@@ -32,6 +36,7 @@ export const load: Handler = async function (req, context) {
 		var token = await context.$token.verify(jwt);
 		if (!token.uid) throw new Error();
 		context.token = token;
+		console.log(token)
 	} catch (err) {
 		return reply(401, 'Invalid "Authorization" token');
 	}

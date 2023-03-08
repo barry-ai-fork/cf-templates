@@ -21,9 +21,13 @@ Auth.add('POST', '/login', async (req, context) => {
 		user = context.user!;
 	} else {
 		user = { uid: utils.uuid() };
+		console.log(user);
+		console.log(context.bindings);
 		context.$user ||= new Models.User(context.bindings.DATABASE);
+		console.log(JSON.stringify(context.$user));
 		let isOK = await context.$user.put(user.uid, user);
-		if (!isOK) return reply(400, 'Error saving user');
+		console.log(isOK);
+		// if (!isOK) return reply(400, 'Error saving user');
 	}
 
 	try {

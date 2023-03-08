@@ -1,4 +1,4 @@
-name = "" # todo
+name = "worker-mysql" # todo
 main = "dist/index.mjs"
 compatibility_date = "2021-10-07"
 

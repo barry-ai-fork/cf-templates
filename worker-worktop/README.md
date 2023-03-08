@@ -81,7 +81,7 @@ $ curl -X GET \
 # Get a TODO owned by the user
 $ curl -X GET \
   -H "Authorization: Bearer eyJh...TkE0" \
-  -d "done=1"
+  -d "done=1"  \
   http://localhost:8787/todos/01G2QZJ2SG13979HNG8GR4J46A
 #=> {
 #=>  "uid": "01G2QZJ2SG13979HNG8GR4J46A",

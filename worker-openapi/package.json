@@ -4,7 +4,8 @@
 	"description": "Cloudflare workers template with OpenAPI 3 schema generation and validation",
 	"main": "src/index.ts",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"deploy": "wrangler publish src/index.ts",
+		"dev": "wrangler dev src/index.ts --local"
 	},
 	"keywords": [],
 	"author": "",

@@ -1,6 +1,8 @@
-name = "" # TODO
+name = "worker-worktop" # TODO
 main = "./src/index.ts"
 compatibility_date = "2022-05-03"
+
+cache_api_key = "https://worker-worktop.ptp-ai.workers.dev"
 
 #
 # NOTE: You will need to use `wrangler secret put JWT_SECRET <value>
@@ -11,5 +13,6 @@ compatibility_date = "2022-05-03"
 
 [[kv_namespaces]]
 binding = "DATABASE"
-preview_id = "<preview namespaceid>" # TODO
-id = "<prod namespaceid>" # TODO
+preview_id = "54657f7b0ceb4e958590eb925e5f95ec" # TODO
+id = "54657f7b0ceb4e958590eb925e5f95ec" # TODO
+

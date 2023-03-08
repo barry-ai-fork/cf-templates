@@ -7,9 +7,10 @@ import { getAssetFromKV, mapRequestToAsset } from '@cloudflare/kv-asset-handler'
  * 2. we will return an error message on exception in your Response rather
  *    than the default 404.html page.
  */
-const DEBUG = false;
+const DEBUG = true;
 
 addEventListener('fetch', event => {
+		// @ts-ignore
 	event.respondWith(handleEvent(event));
 });
 
@@ -19,7 +20,7 @@ addEventListener('fetch', event => {
  */
 async function handleEvent(event) {
 	let options = {};
-
+	console.log(event.request.url)
 	/**
 	 * You can add custom logic to how we fetch your assets
 	 * by configuring the function `mapRequestToAsset`
@@ -51,6 +52,7 @@ async function handleEvent(event) {
 		if (!DEBUG) {
 			try {
 				let notFoundResponse = await getAssetFromKV(event, {
+						// @ts-ignore
 					mapRequestToAsset: req => new Request(`${new URL(req.url).origin}/404.html`, req),
 				});
 
@@ -61,6 +63,7 @@ async function handleEvent(event) {
 			} catch (e) {}
 		}
 
+			// @ts-ignore
 		return new Response(e.message || e.toString(), { status: 500 });
 	}
 }
@@ -84,6 +87,7 @@ function handlePrefix(prefix) {
 		url.pathname = url.pathname.replace(prefix, '/');
 
 		// inherit all other props from the default request
+			// @ts-ignore
 		return new Request(url.toString(), defaultAssetKey);
 	};
 }

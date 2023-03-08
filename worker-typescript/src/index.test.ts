@@ -15,7 +15,8 @@ describe('Worker', () => {
 
 	it('should return 200 response', async () => {
 		const req = new Request('http://falcon', { method: 'GET' });
-		const resp = await worker.fetch(req);
+		// @ts-ignore
+			const resp = await worker.fetch(req);
 		expect(resp.status).toBe(200);
 
 		const text = await resp.text();
